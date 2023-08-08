@@ -12,11 +12,16 @@ void main() {
   print(pessoa1.toMap());
 
   Viagem viagemHoje = Viagem();
-  viagemHoje.dinheiro = 1000;
+  print(viagemHoje.returnCodigo());
 }
 
 class Viagem {
+  static String codigoTrabalho = 'BSB001';
   double dinheiro = 0;
+
+  returnCodigo() {
+    return codigoTrabalho;
+  }
 }
 
 enum Transporte { carro, bike, onibus, andando, skate, aviao, patins, trem }
