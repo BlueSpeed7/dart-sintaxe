@@ -1,7 +1,7 @@
 void main() {
   escolherMeioTransporte(Transporte.bike);
-  Set<String> registrosVisitados = <String>{};
 
+  Set<String> registrosVisitados = <String>{};
   registrosVisitados = registrarDestinos('Rio de Janeiro', registrosVisitados);
   registrosVisitados = registrarDestinos('Brasília', registrosVisitados);
   registrosVisitados = registrarDestinos('Boa Vista', registrosVisitados);
@@ -10,7 +10,16 @@ void main() {
 
   Pessoa pessoa1 = Pessoa('Fernando', 28, true);
   print(pessoa1.toMap());
+
+  Viagem viagemHoje = Viagem();
+  viagemHoje.dinheiro = 1000;
 }
+
+class Viagem {
+  double dinheiro = 0;
+}
+
+enum Transporte { carro, bike, onibus, andando, skate, aviao, patins, trem }
 
 void escolherMeioTransporte(Transporte locomocao) {
   switch (locomocao) {
@@ -35,6 +44,11 @@ void escolherMeioTransporte(Transporte locomocao) {
   }
 }
 
+Set<String> registrarDestinos(String destino, Set<String> banco) {
+  banco.add(destino);
+  return banco;
+}
+
 class Pessoa {
   String nome;
   int idade;
@@ -46,10 +60,3 @@ class Pessoa {
     return {'nome': nome, 'idade': idade, 'estaAutenticada': estaAutenticada};
   }
 }
-
-Set<String> registrarDestinos(String destino, Set<String> banco) {
-  banco.add(destino);
-  return banco;
-}
-
-enum Transporte { carro, bike, onibus, andando, skate, aviao, patins, trem }
