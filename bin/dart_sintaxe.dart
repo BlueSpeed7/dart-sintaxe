@@ -1,26 +1,34 @@
 void main() {
-  escolherMeioTransporte(Transporte.bike);
+  escolherMeioTransporte(Transporte.skate);
+  escolherMeioTransporte(Transporte.carro);
 
   Set<String> registrosVisitados = <String>{};
   registrosVisitados = registrarDestinos('Rio de Janeiro', registrosVisitados);
   registrosVisitados = registrarDestinos('Brasília', registrosVisitados);
   registrosVisitados = registrarDestinos('Boa Vista', registrosVisitados);
-  registrosVisitados = registrarDestinos('Rio de Janeiro', registrosVisitados);
   print(registrosVisitados);
 
   Pessoa pessoa1 = Pessoa('Fernando', 28, true);
   print(pessoa1.toMap());
 
-  Viagem viagemHoje = Viagem();
-  print(viagemHoje.returnCodigo());
+  Viagem viagemHoje = Viagem(1750);
+  print('Código de trabalho: ${viagemHoje.returnCodigo()}');
+  print('Preço da viagem: R\$${Viagem.preco(viagemHoje.dinheiro).toStringAsFixed(2)}');
 }
 
 class Viagem {
   static String codigoTrabalho = 'BSB001';
-  double dinheiro = 0;
+  double dinheiro;
+
+  Viagem(this.dinheiro);
 
   returnCodigo() {
     return codigoTrabalho;
+  }
+
+  static double preco(double dinheiro) {
+    double taxa = 0.15;
+    return dinheiro * taxa;
   }
 }
 
