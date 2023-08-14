@@ -3,15 +3,12 @@ import 'transporte.dart';
 class Viagem {
   static String codigoTrabalho = 'ALR007';
   double dinheiro = 0;
+  int _totalLocaisVisitados = 0;
   Transporte locomocao;
   Set<String> registrosVisitados = <String>{};
   Map<String, dynamic> registrarPrecos = {};
 
   Viagem(this.locomocao);
-
-  returnCodigo() {
-    return codigoTrabalho;
-  }
 
   void escolherMeioTransporte(Transporte locomocao) {
     switch (locomocao) {
@@ -38,9 +35,26 @@ class Viagem {
 
   void visitar(String localVisita) {
     registrosVisitados.add(localVisita);
+    _totalLocaisVisitados++;
   }
 
   void registrarPrecoVisita(String local, dynamic preco) {
     registrarPrecos[local] = preco;
+  }
+
+  String get returnCodigo {
+    return codigoTrabalho;
+  }
+
+  int get consultarTotalLocaisVisitados {
+    return _totalLocaisVisitados;
+  }
+
+  set alterarLocaisVisitados(int novaQnt) {
+    if (novaQnt < 10) {
+      _totalLocaisVisitados = novaQnt;
+    } else {
+      print('Não é possível visitar tantos lugares em tão pouco tempo.');
+    }
   }
 }
